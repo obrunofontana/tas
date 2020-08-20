@@ -32,6 +32,10 @@ $ git clone https://github.com/obrunofontana/tas.git
 
 Em progresso
 
+### 🖥️ Projeto Desktop
+
+Em progresso
+
 ### 💻 Projeto Web
 
 Em progresso
