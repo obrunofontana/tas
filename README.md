@@ -5,9 +5,9 @@ Projeto realizado durante as aulas em tópicos avançados no curso de Sistemas d
 # :pushpin: Índice
 
 - [Tecnologias](#computer-tecnologias)
-- [Funcionalidades](#tas-features)
-- [Como executar](#construction_worker-how-to-run)
-- [Licença](#closed_book-license)
+- [Funcionalidades](#tas-funcionalidades)
+- [Como executar](#construction_worker-como-executar)
+- [Licença](#closed_book-licença)
 
 # :computer: Tecnologias
 
