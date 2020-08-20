@@ -5,7 +5,7 @@ Projeto realizado durante as aulas em tópicos avançados no curso de Sistemas d
 # :pushpin: Índice
 
 - [Tecnologias](#computer-tecnologias)
-- [Funcionalidades](#tas-funcionalidades)
+- [Funcionalidades](#rocket-funcionalidades)
 - [Como executar](#construction_worker-como-executar)
 - [Licença](#closed_book-licença)
 
@@ -17,7 +17,7 @@ Este projeto foi feito utilizando as seguintes tecnologias:
 - [Hibernate](https://hibernate.org/)
 - [Mysql](https://www.mysql.com/)
 
-# :tas: Funcionalidades
+# :rocket: Funcionalidades
 
 Em progresso
 
