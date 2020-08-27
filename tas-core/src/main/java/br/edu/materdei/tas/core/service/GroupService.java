@@ -19,6 +19,7 @@ public class GroupService implements IBaseService<GroupEntity>{
 
     @Override
     public List<GroupEntity> findAll() {
+        return repository.findAll();
         
     }
 
