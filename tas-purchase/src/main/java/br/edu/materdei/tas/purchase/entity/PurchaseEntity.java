@@ -30,6 +30,7 @@ public class PurchaseEntity {
     private String code;
     
     @Temporal(TemporalType.DATE)
+    @Column(nullable = false)
     private Date datePurchased;
     
     @ManyToOne
