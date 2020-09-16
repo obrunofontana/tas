@@ -1,7 +1,7 @@
-package br.edu.materdei.tas.purchase.entity;
+package br.edu.materdei.tas.stock.entity;
 
 import br.edu.materdei.tas.core.entity.ProductEntity;
-
+import java.util.Date;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -10,27 +10,37 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 /**
  *
  * @author brunofontana
  */
 @Entity
-@Table(name = "itempurchase")
-public class ItemPurchaseEntity {
-    @Id 
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+@Table(name = "stock")
+public class StockEntity {    
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)    
     private Integer id;
+    
+    @Temporal(TemporalType.DATE)
+    @Column(nullable = false)
+    private Date dateMove;
     
     @Column(nullable = false)
     private Double quantity;
     
     @Column(nullable = false)
-    private Double price;
+    private String history;
     
     @ManyToOne
     @JoinColumn(nullable = false)
     private ProductEntity product;
+
+    public StockEntity() {
+        this.dateMove = new Date();
+    }
 
     /**
      * @return the id
@@ -44,6 +54,20 @@ public class ItemPurchaseEntity {
      */
     public void setId(Integer id) {
         this.id = id;
+    }
+
+    /**
+     * @return the dateMove
+     */
+    public Date getDateMove() {
+        return dateMove;
+    }
+
+    /**
+     * @param dateMove the dateMove to set
+     */
+    public void setDateMove(Date dateMove) {
+        this.dateMove = dateMove;
     }
 
     /**
@@ -61,17 +85,17 @@ public class ItemPurchaseEntity {
     }
 
     /**
-     * @return the price
+     * @return the history
      */
-    public Double getPrice() {
-        return price;
+    public String getHistory() {
+        return history;
     }
 
     /**
-     * @param price the price to set
+     * @param history the history to set
      */
-    public void setPrice(Double price) {
-        this.price = price;
+    public void setHistory(String history) {
+        this.history = history;
     }
 
     /**
@@ -87,7 +111,7 @@ public class ItemPurchaseEntity {
     public void setProduct(ProductEntity product) {
         this.product = product;
     }
-
-    
+            
+   
     
 }

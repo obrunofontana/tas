@@ -1,2 +1,5 @@
 /tas-core/target/
 /tas-purchase/target/
+/tas-sale/target/
+/tas-stock/target/
+/tas-server/target/
