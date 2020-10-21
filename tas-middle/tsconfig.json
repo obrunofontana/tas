@@ -1,0 +1,23 @@
+{
+  "version": "2.4.2",
+  "compilerOptions": {
+      "target": "es2017",
+      "module": "commonjs",
+      "moduleResolution": "node",
+      "emitDecoratorMetadata": true,
+      "experimentalDecorators": true,
+      "esModuleInterop": true,
+      "sourceMap": true,
+      "outDir": "dist",
+      "strict": false,
+      "resolveJsonModule": true,
+      "forceConsistentCasingInFileNames": true,
+      "allowJs": true,
+  },
+  "include": [
+    "src/**/*.ts"
+  ],
+  "exclude": [
+      "node_modules"
+  ]
+}
