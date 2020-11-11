@@ -123,6 +123,10 @@
           }
         }
       }
-    }},
-  "defaultProject": "tas-web"
+    }
+  },
+  "defaultProject": "tas-web",
+  "cli": {
+    "analytics": "bd64170e-f350-4684-a35c-1e1ec119cdee"
+  }
 }
