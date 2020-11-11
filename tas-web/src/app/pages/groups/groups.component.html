@@ -2,8 +2,8 @@
 
   <mat-sidenav #sidenav position="end" disableClose="true">
       <mat-toolbar>
-          <h2 *ngIf="!grupo.id">Adicionar Grupo</h2>
-          <h2 *ngIf="grupo.id">Alterar Grupo</h2>
+          <h2 *ngIf="!group.id">Adicionar Grupo</h2>
+          <h2 *ngIf="group.id">Alterar Grupo</h2>
           <span class="spacer"></span>
           <button mat-icon-button (click)="sidenav.close()">
               <mat-icon>close</mat-icon>

@@ -6,9 +6,9 @@ import { MatDialog } from '@angular/material/dialog';
 import { ConfirmDialogComponent } from '../../components/confirm-dialog/confirm-dialog.component';
 
 @Component({
-  selector: 'app-group',
-  templateUrl: './group.component.html',
-  styleUrls: ['./group.component.scss'],
+  selector: 'app-groups',
+  templateUrl: './groups.component.html',
+  styleUrls: ['./groups.component.scss'],
 })
 export class GroupsComponent implements OnInit {
   public displayedColumns: string[] = ['nome', 'options'];
@@ -148,7 +148,7 @@ export class GroupsComponent implements OnInit {
   /**
    * Método chamado ao confirmar uma inclusão/alteração
    */
-  public confirmar(): void {
+  public confirm(): void {
     //Mostra a barra de progresso
     this.loading = true;
 
