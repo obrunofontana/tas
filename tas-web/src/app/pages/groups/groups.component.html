@@ -45,7 +45,7 @@
               <table mat-table [dataSource]="groups" *ngIf="!errorMessage">
 
                   <!-- NOME -->
-                  <ng-container matColumnDef="nome">
+                  <ng-container matColumnDef="name">
                       <th mat-header-cell *matHeaderCellDef> Nome </th>
                       <td mat-cell *matCellDef="let group"> {{group.nome}} </td>
                   </ng-container>
