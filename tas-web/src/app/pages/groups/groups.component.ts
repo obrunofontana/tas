@@ -12,7 +12,7 @@ import { ConfirmDialogComponent } from '../../components/confirm-dialog/confirm-
 })
 export class GroupsComponent implements OnInit {
   // Default values
-  public displayedColumns: string[] = ['nome', 'options'];
+  public displayedColumns: string[] = ['name', 'options'];
   public errorMessage: string;
   public groups: GroupEntity[] = [];
   public group: GroupEntity = new GroupEntity();
