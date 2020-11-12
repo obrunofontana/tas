@@ -7,14 +7,10 @@ import { Injectable } from '@angular/core';
 })
 
 
-export class GroupEntity {
-  id: number;
-  name: string;
-}
 export class GroupService {
-  constructor(private http: HttpClient) {}
-
   private urlAPI: string = environment.urlSRV;
+
+  constructor(private http: HttpClient) {}
 
   public listAll() {
     return this.http.get(`${this.urlAPI}/api/groups`);
@@ -39,4 +35,9 @@ export class GroupService {
   private update(groups: GroupEntity) {
     return this.http.put(`${this.urlAPI}/api/groups/${groups.id}`, groups);
   }
+}
+
+export class GroupEntity {
+  id: number;
+  name: string;
 }

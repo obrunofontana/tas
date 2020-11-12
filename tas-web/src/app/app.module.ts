@@ -33,6 +33,7 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { ConfirmDialogComponent } from './components/confirm-dialog/confirm-dialog.component';
 import { GroupsComponent } from './pages/groups/groups.component';
 
+
 @NgModule({
   declarations: [AppComponent, ConfirmDialogComponent, GroupsComponent],
   imports: [

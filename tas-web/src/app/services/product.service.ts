@@ -6,21 +6,6 @@ import { GroupService } from './group.service';
 @Injectable({
   providedIn: 'root',
 })
-
-export class ProductEntity {
-  id: number;
-  code: string;
-  name: string;
-  description: string;
-  price: number;
-  active: string;
-  group: GroupService;
-
-  constructor() {
-    this.active = 'S';
-  }
-}
-
 export class ProductService {
   private url: string = environment.urlSRV;
 
@@ -48,5 +33,19 @@ export class ProductService {
 
   private update(product: ProductEntity) {
     return this.http.put(`${this.url}/api/products/${product.id}`, product);
+  }
+}
+
+export class ProductEntity {
+  id: number;
+  code: string;
+  name: string;
+  description: string;
+  price: number;
+  active: string;
+  group: GroupService;
+
+  constructor() {
+    this.active = 'S';
   }
 }

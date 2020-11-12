@@ -11,20 +11,20 @@ import { ConfirmDialogComponent } from '../../components/confirm-dialog/confirm-
   styleUrls: ['./groups.component.scss'],
 })
 export class GroupsComponent implements OnInit {
+  // Default values
   public displayedColumns: string[] = ['nome', 'options'];
-
+  public errorMessage: string;
   public groups: GroupEntity[] = [];
   public group: GroupEntity = new GroupEntity();
-
-  // Variaveis de controle
   public loading: boolean;
-  public errorMessage: string;
+
+
 
   @ViewChild(MatSidenav, { static: true }) sidenav: MatSidenav;
 
   constructor(
     private service: GroupService,
-    private snakBar: MatSnackBar,
+    private snack: MatSnackBar,
     private dialog: MatDialog
   ) {}
 
@@ -73,7 +73,7 @@ export class GroupsComponent implements OnInit {
    */
   private showError(text: string, error: any): void {
     //Mostra a snackbar com fundo customizado (vermelho)
-    this.snakBar.open(text, '', {
+    this.snack.open(text, '', {
       duration: 5000,
       panelClass: 'snackWarn',
     });
@@ -125,7 +125,7 @@ export class GroupsComponent implements OnInit {
           .subscribe(
             (result) => {
               //Deu certo, avisa o usuário...
-              this.snakBar.open('Registro excluído com sucesso!', '', {
+              this.snack.open('Registro excluído com sucesso!', '', {
                 duration: 3500,
               });
 
@@ -158,7 +158,7 @@ export class GroupsComponent implements OnInit {
       .subscribe(
         (result) => {
           //Deu tudo certo, então avise o usuário...
-          this.snakBar.open('Registro salvo com sucesso!', '', {
+          this.snack.open('Registro salvo com sucesso!', '', {
             duration: 3500,
           });
 
