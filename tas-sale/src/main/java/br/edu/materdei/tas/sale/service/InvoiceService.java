@@ -8,11 +8,13 @@ import br.edu.materdei.tas.sale.repository.InvoiceRepository;
 import java.util.List;
 import javax.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 /**
  *
  * @author brunofontana
  */
+@Service
 public class InvoiceService implements IBaseService<InvoiceEntity> {
 
     @Autowired

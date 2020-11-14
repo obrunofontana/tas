@@ -44,5 +44,91 @@ public class SalesOrderEntity {
     @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     private List<ItemSalesOrderEntity> items;
 
+    /**
+     * @return the id
+     */
+    public Integer getId() {
+        return id;
+    }
+
+    /**
+     * @param id the id to set
+     */
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
+    /**
+     * @return the code
+     */
+    public String getCode() {
+        return code;
+    }
+
+    /**
+     * @param code the code to set
+     */
+    public void setCode(String code) {
+        this.code = code;
+    }
+
+    /**
+     * @return the salesDate
+     */
+    public Date getSalesDate() {
+        return salesDate;
+    }
+
+    /**
+     * @param salesDate the salesDate to set
+     */
+    public void setSalesDate(Date salesDate) {
+        this.salesDate = salesDate;
+    }
+
+    /**
+     * @return the billingDate
+     */
+    public Date getBillingDate() {
+        return billingDate;
+    }
+
+    /**
+     * @param billingDate the billingDate to set
+     */
+    public void setBillingDate(Date billingDate) {
+        this.billingDate = billingDate;
+    }
+
+    /**
+     * @return the customer
+     */
+    public CustomerEntity getCustomer() {
+        return customer;
+    }
+
+    /**
+     * @param customer the customer to set
+     */
+    public void setCustomer(CustomerEntity customer) {
+        this.customer = customer;
+    }
+
+    /**
+     * @return the items
+     */
+    public List<ItemSalesOrderEntity> getItems() {
+        return items;
+    }
+
+    /**
+     * @param items the items to set
+     */
+    public void setItems(List<ItemSalesOrderEntity> items) {
+        this.items = items;
+    }
+    
+    
+
     
 }
