@@ -7,11 +7,13 @@ import br.edu.materdei.tas.production.repository.ProductionNoteRepository;
 import java.util.List;
 import javax.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 /**
  *
  * @author brunofontana
  */
+@Service
 public class ProductionNoteService implements IBaseService<ProductionNoteEntity> {
 
     @Autowired

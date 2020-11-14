@@ -68,8 +68,5 @@ public class IngredientsEntity {
      */
     public void setProduct(ProductEntity product) {
         this.product = product;
-    }
-    
-    
-    
+    }    
 }

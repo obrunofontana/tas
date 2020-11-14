@@ -85,7 +85,4 @@ public class ProductionNoteEntity {
     public void setQuanitty(Double quanitty) {
         this.quanitty = quanitty;
     }
-    
-    
-    
 }

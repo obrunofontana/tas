@@ -72,5 +72,4 @@ public class FinishedProductEntity {
     public void setIngredients(List<IngredientsEntity> ingredients) {
         this.ingredients = ingredients;
     }   
-    
 }
