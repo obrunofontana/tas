@@ -2,6 +2,7 @@ import express, { Application } from 'express';
 import cors from 'cors';
 
 import tokenRoute from './routes/token.route';
+import apiRoute from './routes/api.route';
 
 export class App {
   public express: Application;
@@ -19,7 +20,8 @@ export class App {
   }
 
   private routes(): void {
-    this.express.use('/token', tokenRoute);
+    this.express.use('/token', tokenRoute)
+    this.express.use('/api', apiRoute);
   }
 }
 
