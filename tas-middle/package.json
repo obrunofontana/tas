@@ -4,11 +4,11 @@
   "main": "server.ts",
   "scripts": {
     "build": "tsc && node dist/server.js",
-   
     "start": "npx ts-node-dev --transpile-only --ignore-watch node_modules --respawn src/server.ts"
   },
   "license": "MIT",
   "dependencies": {
+    "@types/node": "^14.14.8",
     "axios": "^0.19.0",
     "cors": "^2.8.5",
     "dotenv": "^8.2.0",

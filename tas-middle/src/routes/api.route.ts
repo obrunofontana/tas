@@ -1,12 +1,15 @@
 import { NextFunction, Request, Response, Router } from 'express';
 import jwt from 'jsonwebtoken';
 import axios from 'axios';
+import dotenv from 'dotenv';
 
 class APIRoute {
   public router: Router;
-  private url = process.env.SERVER;
+  public url: string;
 
   constructor() {
+    dotenv.config();
+    this.url = process.env.SERVER;
     this.router = Router();
     this.init();
   }
@@ -40,6 +43,9 @@ class APIRoute {
       })
       .get(async (req: Request, res: Response) => {     
         try {
+
+          console.log('ops ', `${this.url}/${req.params.resource}`);
+
           const response = await axios.get(`${this.url}/${req.params.resource}`);
           const { data, status } = response;
 
