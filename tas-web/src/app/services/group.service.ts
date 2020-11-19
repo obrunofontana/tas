@@ -12,7 +12,7 @@ export class GroupService {
 
   constructor(private http: HttpClient) {}
 
-  public listAll() {
+  public findAll() {
     return this.http.get(`${this.urlAPI}/api/groups`);
   }
 
