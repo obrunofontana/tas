@@ -32,10 +32,14 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 
 import { ConfirmDialogComponent } from './components/confirm-dialog/confirm-dialog.component';
 import { GroupsComponent } from './pages/groups/groups.component';
+import { SalesComponent } from './pages/sales/sales.component';
+import { ProductsComponent } from './pages/products/products.component';
+import { CustomersComponent } from './pages/customers/customers.component';
+import { ItemComponent } from './pages/sales/item/item.component';
 
 
 @NgModule({
-  declarations: [AppComponent, ConfirmDialogComponent, GroupsComponent],
+  declarations: [AppComponent, ConfirmDialogComponent, GroupsComponent, SalesComponent, ProductsComponent, CustomersComponent, ItemComponent],
   imports: [
     BrowserModule,
     FormsModule,
