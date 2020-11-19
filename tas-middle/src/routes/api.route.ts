@@ -43,9 +43,6 @@ class APIRoute {
       })
       .get(async (req: Request, res: Response) => {     
         try {
-
-          console.log('ops ', `${this.url}/${req.params.resource}`);
-
           const response = await axios.get(`${this.url}/${req.params.resource}`);
           const { data, status } = response;
 
@@ -56,7 +53,7 @@ class APIRoute {
       })
       .post( async (req: Request, res: Response) => {
         try {
-          const response = await axios.get(`${this.url}/${req.params.resource}`, req.body);
+          const response = await axios.post(`${this.url}/${req.params.resource}`, req.body);
           const { data, status } = response;
           
           return res.status(status).json(data)
@@ -66,7 +63,7 @@ class APIRoute {
       });
 
     // Resource with ID
-    this.router.route('/:resource')
+    this.router.route('/:resource/:id')
       .all((req: Request, res: Response, next: NextFunction) => {
         try {
           this.validateToken(req);
@@ -99,7 +96,7 @@ class APIRoute {
       })
       .delete( async (req: Request, res: Response) => {
         try {
-          const response = await axios.get(`${this.url}/${req.params.resource}/${req.params.id}`);
+          const response = await axios.delete(`${this.url}/${req.params.resource}/${req.params.id}`);
           const { data, status } = response;
 
           return res.status(status).json(data);
