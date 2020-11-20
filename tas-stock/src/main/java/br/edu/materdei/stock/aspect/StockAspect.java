@@ -57,8 +57,26 @@ public class StockAspect {
             // Grava a movimentação de estoque
             this.stockService.save(stock);
         });
-    }
+    }    
 
+    @AfterReturning(pointcut = "execution( * br.edu.materdei.tas.sale.service.InvoiceService.save(..))")
+    public void saveInvoice(JoinPoint joinPoint) {
+        Object[] args = joinPoint.getArgs();
+        InvoiceEntity invoice = (InvoiceEntity) args[0];
+
+        invoice.getSalesOrder().getItems().forEach(item -> {
+            StockEntity stock = new StockEntity();
+
+            // Alimenta o estoque com os dados dos itens da venda
+            stock.setProduct(item.getProduct());
+            stock.setQuantity(item.getQuantity() * -1);
+            stock.setHistory("Movimento de saída originado pela venda " + invoice.getCode());
+
+            // Grava a movimentação de estoque
+            this.stockService.save(stock);
+        });
+    }
+    
     @Before("execution( * br.edu.materdei.tas.purchase.service.PurchaseService.delete(..))")
     public void reversePurchase(JoinPoint joinPoint) {
         Object[] args = joinPoint.getArgs();
@@ -87,27 +105,6 @@ public class StockAspect {
         } catch (ResourceNotFoundException ex) {
             Logger.getLogger(StockAspect.class.getName()).log(Level.SEVERE, null, ex);
         }
-    }
-
-    /* Compra */
-
-    /* Venda */
-    @AfterReturning(pointcut = "execution( * br.edu.materdei.tas.sale.service.InvoiceService.save(..))")
-    public void saveInvoice(JoinPoint joinPoint) {
-        Object[] args = joinPoint.getArgs();
-        InvoiceEntity invoice = (InvoiceEntity) args[0];
-
-        invoice.getSalesOrder().getItems().forEach(item -> {
-            StockEntity stock = new StockEntity();
-
-            // Alimenta o estoque com os dados dos itens da venda
-            stock.setProduct(item.getProduct());
-            stock.setQuantity(item.getQuantity() * -1);
-            stock.setHistory("Movimento de saída originado pela venda " + invoice.getCode());
-
-            // Grava a movimentação de estoque
-            this.stockService.save(stock);
-        });
     }
 
     @Around("execution(* br.edu.materdei.tas.sale.service.InvoiceService.delete(..))")
@@ -151,5 +148,4 @@ public class StockAspect {
             });
         }
     }
-    /* Venda */
 }

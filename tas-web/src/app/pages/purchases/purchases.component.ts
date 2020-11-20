@@ -22,9 +22,9 @@ export class PurchasesComponent implements OnInit {
   public displayedColumns: string[] = [
     'code',
     'supplier',
-    'options',
     'datePurchased',
     'total',
+    'options',
   ];
 
   public suppliers: SupplierEntity[] = [];

@@ -23,9 +23,9 @@ export class SalesComponent implements OnInit {
     'code',
     'customer',
     'billingDate',
-    'options',
     'salesDate',
     'total',
+    'options',
   ];
 
   public customers: CustomerEntity[] = [];
