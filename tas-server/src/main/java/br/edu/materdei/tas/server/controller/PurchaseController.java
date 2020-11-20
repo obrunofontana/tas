@@ -25,6 +25,7 @@ import org.springframework.web.bind.annotation.RequestBody;
  *
  * @author brunofontana
  */
+@RestController
 public class PurchaseController {
     
      @Autowired

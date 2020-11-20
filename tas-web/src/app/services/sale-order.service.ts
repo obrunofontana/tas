@@ -48,7 +48,7 @@ export class ItemSaleOrderEntity {
 export class SaleOrderEntity {
   id: number;
   code: string;
-  saleDate: Date;
+  salesDate: Date;
   billingDate: Date;
   customer: CustomerEntity;
   items: ItemSaleOrderEntity[];

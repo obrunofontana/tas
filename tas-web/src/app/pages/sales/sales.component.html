@@ -23,7 +23,7 @@
                           <span class="spacer"></span>
 
                           <mat-form-field>
-                              <input matInput [matDatepicker]="picker" placeholder="Data Pedido" [(ngModel)]="sale.saleDate" [disabled]="sale.id">
+                              <input matInput [matDatepicker]="picker" placeholder="Data Pedido" [(ngModel)]="sale.salesDate" [disabled]="sale.id">
                               <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
                               <mat-datepicker #picker></mat-datepicker>
                           </mat-form-field>
@@ -99,9 +99,9 @@
           <mat-card-content>
               <table mat-table [dataSource]="sales" *ngIf="!errorMessage">
                   <!-- DTPEDIDO -->
-                  <ng-container matColumnDef="saleDate">
+                  <ng-container matColumnDef="salesDate">
                       <th mat-header-cell *matHeaderCellDef> Data Pedido </th>
-                      <td mat-cell *matCellDef="let sale"> {{sale.saleDate | date:'dd/MM/yyyy'}} </td>
+                      <td mat-cell *matCellDef="let sale"> {{sale.salesDate | date:'dd/MM/yyyy'}} </td>
                   </ng-container>
 
                   <!-- CODIGO -->

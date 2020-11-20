@@ -24,7 +24,7 @@ export class SalesComponent implements OnInit {
     'customer',
     'billingDate',
     'options',
-    'saleDate',
+    'salesDate',
     'total',
   ];
 
