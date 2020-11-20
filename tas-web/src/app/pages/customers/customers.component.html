@@ -69,7 +69,7 @@
           </mat-card-title>
           <mat-card-content>
 
-              <table mat-table [dataSource]="customers" *ngIf="!errorMessage">
+              <table mat-table [dataSource]="customers" *ngIf="!errorMessage && !customers.length == 0">
 
                   <!-- CODIGO -->
                   <ng-container matColumnDef="code">
@@ -133,6 +133,10 @@
                   <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
                   <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
               </table>
+
+              <div class="notFoundDiv" *ngIf="customers.length == 0">
+                <p>Nenhum registro encontrado</p>
+              </div>
 
               <div class="panel-error" *ngIf="errorMessage">
                   <img src="assets/oops.png">

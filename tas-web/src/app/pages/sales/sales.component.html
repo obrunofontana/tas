@@ -97,9 +97,7 @@
 
           </mat-card-title>
           <mat-card-content>
-
-              <table mat-table [dataSource]="sales" *ngIf="!errorMessage">
-
+              <table mat-table [dataSource]="sales" *ngIf="!errorMessage && !sale.items.length == 0">
                   <!-- DTPEDIDO -->
                   <ng-container matColumnDef="saleDate">
                       <th mat-header-cell *matHeaderCellDef> Data Pedido </th>
@@ -153,6 +151,10 @@
                   <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
                   <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
               </table>
+
+              <div class="notFoundDiv" *ngIf="sale.items.length == 0">
+                <p>Nenhum registro encontrado</p>
+              </div>
 
               <div class="panel-error" *ngIf="errorMessage">
                   <img src="assets/oops.png">
