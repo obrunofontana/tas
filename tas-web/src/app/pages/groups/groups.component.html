@@ -42,7 +42,7 @@
           </mat-card-title>
           <mat-card-content>
 
-              <table mat-table [dataSource]="groups" *ngIf="!errorMessage && !groups.length == 0">
+              <table mat-table [dataSource]="groups" *ngIf="!errorMessage">
 
                   <!-- NOME -->
                   <ng-container matColumnDef="name">

@@ -69,7 +69,7 @@
           </mat-card-title>
           <mat-card-content>
 
-              <table mat-table [dataSource]="customers" *ngIf="!errorMessage && !customers.length == 0">
+              <table mat-table [dataSource]="customers" *ngIf="!errorMessage">
 
                   <!-- CODIGO -->
                   <ng-container matColumnDef="code">

@@ -35,11 +35,12 @@ import { GroupsComponent } from './pages/groups/groups.component';
 import { SalesComponent } from './pages/sales/sales.component';
 import { ProductsComponent } from './pages/products/products.component';
 import { CustomersComponent } from './pages/customers/customers.component';
-import { ItemComponent } from './pages/sales/item/item.component';
+import { ItemSaleComponent } from './pages/sales/item-sale/item-sale.component';
 import { TotalSalePipe } from './pipes/total-sale.pipe';
 import { MenuComponent } from './components/menu/menu.component';
 import { SuppliersComponent } from './pages/suppliers/suppliers.component';
 import { PurchasesComponent } from './pages/purchases/purchases.component';
+import { ItemPurchaseComponent } from './pages/purchases/item-purchase/item-purchase.component';
 
 @NgModule({
   declarations: [
@@ -49,11 +50,13 @@ import { PurchasesComponent } from './pages/purchases/purchases.component';
     SalesComponent,
     ProductsComponent,
     CustomersComponent,
-    ItemComponent,
+    ItemSaleComponent,
     TotalSalePipe,
     MenuComponent,
     SuppliersComponent,
     PurchasesComponent,
+    ItemPurchaseComponent,
+    ItemSaleComponent,
   ],
   imports: [
     BrowserModule,

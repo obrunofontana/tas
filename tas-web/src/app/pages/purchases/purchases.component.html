@@ -1,1 +1,165 @@
-<p>purchases works!</p>
+<mat-sidenav-container class="sidenav-custom">
+
+  <mat-sidenav #sidenav position="end" disableClose="true">
+      <mat-toolbar>
+          <h2 *ngIf="!purchase.id">Adicionar Pedido de Compra</h2>
+          <h2 *ngIf="purchase.id">Alterar Pedido de Compra</h2>
+          <span class="spacer"></span>
+          <button mat-icon-button (click)="sidenav.close()">
+              <mat-icon>close</mat-icon>
+          </button>
+      </mat-toolbar>
+
+      <div class="formulario">
+
+          <mat-tab-group>
+              <mat-tab label="Cabeçalho">
+                  <div class="custom-tab-container">
+                      <div class="flex-container">
+                          <mat-form-field>
+                              <input matInput placeholder="Código" [(ngModel)]="purchase.code" [disabled]="purchase.id">
+                          </mat-form-field>
+
+                          <span class="spacer"></span>
+
+                          <mat-form-field>
+                              <input matInput [matDatepicker]="picker" placeholder="Data Pedido" [(ngModel)]="purchase.datePurchased" [disabled]="purchase.id">
+                              <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                              <mat-datepicker #picker></mat-datepicker>
+                          </mat-form-field>
+                      </div>
+                      <mat-form-field class="full-width">
+                          <mat-select placeholder="Cliente" [(ngModel)]="purchase.supplier" [compareWith]= "compareOptions" [disabled]="purchase.id">
+                              <mat-option *ngFor="let supplier of suppliers" [value]="supplier">{{ supplier.name }}</mat-option>
+                          </mat-select>
+                      </mat-form-field>
+                  </div>
+                  <mat-toolbar *ngIf="!purchase.id">
+                      <span class="spacer"></span>
+                      <button mat-button (click)="sidenav.close()">Cancelar</button>
+                      <button mat-raised-button color="primary" (click)="confirm()" [disabled]="purchase.items.length == 0">Confirmar</button>
+                  </mat-toolbar>
+              </mat-tab>
+              <mat-tab label="Itens">
+                  <div class="custom-tab-container">
+                      <table>
+                          <thead>
+                              <tr>
+                                  <th>Produto</th>
+                                  <th class="cell-right">Vlr. Unit.</th>
+                                  <th class="cell-center">Quantidade</th>
+                                  <th class="cell-right">Vlr Total</th>
+                              </tr>
+                          </thead>
+                          <tbody>
+                              <tr *ngFor="let item of purchase.items">
+                                  <td>{{item.product.name}}</td>
+                                  <td class="cell-right">{{item.price | currency: 'BRL'}}</td>
+                                  <td class="cell-center">{{item.quantity}}</td>
+                                  <td class="cell-right">{{item.quantity*item.price | currency: 'BRL'}}</td>
+                              </tr>
+                          </tbody>
+                          <tfoot>
+                              <tr>
+                                  <td colspan="4" class="cell-right">
+                                      <h3>{{purchase.items | totalSale | currency: 'BRL'}}</h3>
+                                  </td>
+                              </tr>
+                          </tfoot>
+                      </table>
+                  </div>
+
+                  <mat-toolbar *ngIf="!purchase.id">
+                      <span class="spacer"></span>
+                      <button mat-stroked-button (click)="addItem()">Adicionar Item</button>
+                  </mat-toolbar>
+
+              </mat-tab>
+          </mat-tab-group>
+      </div>
+
+  </mat-sidenav>
+  <mat-sidenav-content>
+
+      <mat-card>
+          <mat-card-title>
+              <mat-toolbar color="primary">
+                  <h3>Cadastro de Pedido de Compra</h3>
+
+                  <span class="spacer"></span>
+
+                  <button mat-icon-button (click)="add()">
+                      <mat-icon>add</mat-icon>
+                  </button>
+              </mat-toolbar>
+
+              <mat-progress-bar mode="indeterminate" color="warn" *ngIf="loading"></mat-progress-bar>
+
+          </mat-card-title>
+          <mat-card-content>
+              <table mat-table [dataSource]="purchases" *ngIf="!errorMessage">
+                  <!-- DTPEDIDO -->
+                  <ng-container matColumnDef="datePurchased">
+                      <th mat-header-cell *matHeaderCellDef> Data Pedido </th>
+                      <td mat-cell *matCellDef="let purchase"> {{purchase.datePurchased | date:'dd/MM/yyyy'}} </td>
+                  </ng-container>
+
+                  <!-- CODIGO -->
+                  <ng-container matColumnDef="code">
+                      <th mat-header-cell *matHeaderCellDef> Código </th>
+                      <td mat-cell *matCellDef="let purchase"> {{purchase.code}} </td>
+                  </ng-container>
+
+                  <!-- FORNECEDOR -->
+                  <ng-container matColumnDef="customer">
+                      <th mat-header-cell *matHeaderCellDef> Cliente </th>
+                      <td mat-cell *matCellDef="let purchase"> {{purchase.customer.name}} </td>
+                  </ng-container>
+
+                  <!-- TOTAL -->
+                  <ng-container matColumnDef="total">
+                      <th mat-header-cell *matHeaderCellDef> Total </th>
+                      <td mat-cell *matCellDef="let purchase"> {{purchase.items | totalSale | currency: 'BRL'}} </td>
+                  </ng-container>
+
+                  <!-- OPTIONS -->
+                  <ng-container matColumnDef="options">
+                      <th mat-header-cell *matHeaderCellDef> </th>
+                      <td mat-cell *matCellDef="let purchase">
+                          <button mat-icon-button [matMenuTriggerFor]="menu">
+                              <mat-icon>more_vert</mat-icon>
+                          </button>
+                          <mat-menu #menu="matMenu">
+                              <button mat-menu-item (click)="preview(purchase)">
+                                  <mat-icon>visibility</mat-icon>
+                                  <span>Visualizar</span>
+                              </button>
+                              <button mat-menu-item (click)="remove(purchase)">
+                                  <mat-icon>delete</mat-icon>
+                                  <span>Excluir</span>
+                              </button>
+                          </mat-menu>
+                      </td>
+                  </ng-container>
+
+                  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                  <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+              </table>
+
+              <div class="notFoundDiv" *ngIf="purchase.items.length == 0">
+                <p>Nenhum registro encontrado</p>
+              </div>
+
+              <div class="panel-error" *ngIf="errorMessage">
+                  <img src="assets/oops.png">
+                  <h1 headline>Ocorreu um erro!</h1>
+                  <p caption>{{errorMessage}}</p>
+                  <button mat-button color="warn" (click)="ngOnInit()">Tentar Novamente</button>
+              </div>
+
+
+          </mat-card-content>
+      </mat-card>
+  </mat-sidenav-content>
+
+</mat-sidenav-container>

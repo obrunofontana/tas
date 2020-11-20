@@ -3,7 +3,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { MatSidenav } from '@angular/material/sidenav';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { ConfirmDialogComponent } from '../../components/confirm-dialog/confirm-dialog.component';
-import { ItemComponent } from './item/item.component';
+import { ItemSaleComponent } from './item-sale/item-sale.component';
 import {
   CustomerEntity,
   CustomerService,
@@ -45,11 +45,9 @@ export class SalesComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    //Inicia as variáveis
     this.errorMessage = '';
     this.loading = true;
 
-    //Carrega todos os registros
     this.service
       .findAll()
       .subscribe(
@@ -61,12 +59,10 @@ export class SalesComponent implements OnInit {
           this.sales = result as [];
         },
         (error) => {
-          //Se ocorreu algum erro neste processo, mostra mensagem para usuário
           this.showError('Ops! Alconteceu algo...', error);
         }
       )
       .add(() => {
-        //Após a execução do subscribe, dando erro ou não, oculta a barra de progresso
         this.loading = false;
       });
   }
@@ -156,7 +152,7 @@ export class SalesComponent implements OnInit {
   }
 
   public addItem(): void {
-    let dialogRef = this.dialog.open(ItemComponent, {
+    let dialogRef = this.dialog.open(ItemSaleComponent, {
       width: '500px',
     });
 

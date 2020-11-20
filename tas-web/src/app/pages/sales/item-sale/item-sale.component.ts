@@ -7,17 +7,17 @@ import {
 } from 'src/app/services/product.service';
 
 @Component({
-  selector: 'app-item',
-  templateUrl: './item.component.html',
-  styleUrls: ['./item.component.scss'],
+  selector: 'app-item-sale',
+  templateUrl: './item-sale.component.html',
+  styleUrls: ['./item-sale.component.scss'],
 })
-export class ItemComponent implements OnInit {
+export class ItemSaleComponent implements OnInit {
   public itemSale: ItemSaleOrderEntity;
   public products: ProductEntity[] = [];
 
   constructor(
     private productService: ProductService,
-    public dialogRef: MatDialogRef<ItemComponent>
+    public dialogRef: MatDialogRef<ItemSaleComponent>
   ) {
     this.itemSale = new ItemSaleOrderEntity();
 
@@ -25,9 +25,7 @@ export class ItemComponent implements OnInit {
       this.products = result as [];
     });
   }
-  ngOnInit(): void {
-    throw new Error('Method not implemented.');
-  }
+  ngOnInit(): void {}
 
   public onDismiss(): void {
     this.dialogRef.close(false);

@@ -84,7 +84,7 @@
       <mat-card>
           <mat-card-title>
               <mat-toolbar color="primary">
-                  <h3>Cadastro de Pedidos</h3>
+                  <h3>Cadastro de Pedido de Venda</h3>
 
                   <span class="spacer"></span>
 
@@ -97,7 +97,7 @@
 
           </mat-card-title>
           <mat-card-content>
-              <table mat-table [dataSource]="sales" *ngIf="!errorMessage && !sale.items.length == 0">
+              <table mat-table [dataSource]="sales" *ngIf="!errorMessage">
                   <!-- DTPEDIDO -->
                   <ng-container matColumnDef="saleDate">
                       <th mat-header-cell *matHeaderCellDef> Data Pedido </th>
