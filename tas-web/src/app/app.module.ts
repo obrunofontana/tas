@@ -36,10 +36,23 @@ import { SalesComponent } from './pages/sales/sales.component';
 import { ProductsComponent } from './pages/products/products.component';
 import { CustomersComponent } from './pages/customers/customers.component';
 import { ItemComponent } from './pages/sales/item/item.component';
-
+import { TotalSalePipe } from './pipes/total-sale.pipe';
+import { MenuComponent } from './components/menu/menu.component';
+import { SuppliersComponent } from './pages/suppliers/suppliers.component';
 
 @NgModule({
-  declarations: [AppComponent, ConfirmDialogComponent, GroupsComponent, SalesComponent, ProductsComponent, CustomersComponent, ItemComponent],
+  declarations: [
+    AppComponent,
+    ConfirmDialogComponent,
+    GroupsComponent,
+    SalesComponent,
+    ProductsComponent,
+    CustomersComponent,
+    ItemComponent,
+    TotalSalePipe,
+    MenuComponent,
+    SuppliersComponent,
+  ],
   imports: [
     BrowserModule,
     FormsModule,

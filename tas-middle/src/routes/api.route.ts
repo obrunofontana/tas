@@ -48,7 +48,7 @@ class APIRoute {
 
           return res.status(status).json(data);
         } catch (e) {
-          return res.status(401).json({ error: e });
+          return res.status(500).json({ error: e });
         }       
       })
       .post( async (req: Request, res: Response) => {
@@ -58,7 +58,8 @@ class APIRoute {
           
           return res.status(status).json(data)
         } catch (e) {
-          return res.status(401).json({ error: e });
+          console.log('ehhh karalho ', e);
+          return res.status(500).json({ error: e });
         }
       });
 

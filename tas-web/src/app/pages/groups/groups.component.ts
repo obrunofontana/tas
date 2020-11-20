@@ -38,7 +38,7 @@ export class GroupsComponent implements OnInit {
 
     //Carrega todos os registros
     this.service
-      .listAll()
+      .findAll()
       .subscribe(
         (result) => {
           // Alimenta o datasource da tabela com os registros recebidos da service

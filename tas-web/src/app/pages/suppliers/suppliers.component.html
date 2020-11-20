@@ -1,0 +1,159 @@
+<mat-sidenav-container class="sidenav-custom">
+
+  <mat-sidenav #sidenav position="end" disableClose="true">
+      <mat-toolbar>
+          <h2 *ngIf="!supplier.id">Adicionar Cliente</h2>
+          <h2 *ngIf="supplier.id">Alterar Cliente</h2>
+          <span class="spacer"></span>
+          <button mat-icon-button (click)="sidenav.close()">
+              <mat-icon>close</mat-icon>
+          </button>
+      </mat-toolbar>
+
+      <div class="formulario">
+          <mat-form-field>
+              <input matInput placeholder="Código" [(ngModel)]="supplier.code">
+          </mat-form-field>
+
+          <mat-form-field class="full-width">
+              <input matInput placeholder="Nome" [(ngModel)]="supplier.name">
+          </mat-form-field>
+
+          <mat-form-field class="full-width">
+              <input matInput placeholder="E-mail" [(ngModel)]="supplier.email">
+          </mat-form-field>
+
+          <mat-form-field class="full-width">
+              <input matInput placeholder="Contato" [(ngModel)]="supplier.contact">
+          </mat-form-field>
+
+          <mat-form-field class="full-width">
+              <input matInput placeholder="Endereço" [(ngModel)]="supplier.address">
+          </mat-form-field>
+
+          <div class="flex-container">
+              <mat-form-field>
+                  <input matInput placeholder="CNPJ" [(ngModel)]="supplier.cnpj">
+              </mat-form-field>
+
+              <span class="spacer"></span>
+
+              <mat-form-field>
+                  <mat-select placeholder="Ativo" [(ngModel)]="supplier.active">
+                      <mat-option value="S">Sim</mat-option>
+                      <mat-option value="N">Não</mat-option>
+                  </mat-select>
+              </mat-form-field>
+          </div>
+      </div>
+
+      <mat-toolbar>
+          <span class="spacer"></span>
+          <button mat-button (click)="sidenav.close()">Cancelar</button>
+          <button mat-raised-button color="primary" (click)="confirm()">Confirmar</button>
+      </mat-toolbar>
+
+  </mat-sidenav>
+  <mat-sidenav-content>
+
+      <mat-card>
+          <mat-card-title>
+              <mat-toolbar color="primary">
+                  <h3>Cadastro de Fornecedores</h3>
+
+                  <span class="spacer"></span>
+
+                  <button mat-icon-button (click)="add()">
+                      <mat-icon>add</mat-icon>
+                  </button>
+              </mat-toolbar>
+
+              <mat-progress-bar mode="indeterminate" color="warn" *ngIf="loading"></mat-progress-bar>
+
+          </mat-card-title>
+          <mat-card-content>
+
+              <table mat-table [dataSource]="suppliers" *ngIf="!errorMessage">
+
+                  <!-- CODIGO -->
+                  <ng-container matColumnDef="code">
+                      <th mat-header-cell *matHeaderCellDef> Código </th>
+                      <td mat-cell *matCellDef="let supplier"> {{supplier.code}} </td>
+                  </ng-container>
+
+                  <!-- NOME -->
+                  <ng-container matColumnDef="name">
+                      <th mat-header-cell *matHeaderCellDef> Nome </th>
+                      <td mat-cell *matCellDef="let supplier"> {{supplier.name}} </td>
+                  </ng-container>
+
+                  <!-- CPF -->
+                  <ng-container matColumnDef="cnpj">
+                      <th mat-header-cell *matHeaderCellDef> CNPJ </th>
+                      <td mat-cell *matCellDef="let supplier"> {{supplier.cnpj}} </td>
+                  </ng-container>
+
+                  <!-- EMAIL -->
+                  <ng-container matColumnDef="email">
+                      <th mat-header-cell *matHeaderCellDef> E-mail </th>
+                      <td mat-cell *matCellDef="let supplier"> {{supplier.email}} </td>
+                  </ng-container>
+
+                  <!-- CONTATO -->
+                  <ng-container matColumnDef="contact">
+                      <th mat-header-cell *matHeaderCellDef> Contato </th>
+                      <td mat-cell *matCellDef="let supplier"> {{supplier.contact}} </td>
+                  </ng-container>
+
+                  <!-- ENDERECO -->
+                  <ng-container matColumnDef="address">
+                      <th mat-header-cell *matHeaderCellDef> Endereço </th>
+                      <td mat-cell *matCellDef="let supplier"> {{supplier.address}} </td>
+                  </ng-container>
+
+                  <!-- ATIVO -->
+                  <ng-container matColumnDef="active">
+                      <th mat-header-cell *matHeaderCellDef> Ativo </th>
+                      <td mat-cell *matCellDef="let supplier">
+                          <mat-icon style="color: #2eaa4f" *ngIf="supplier.active == 'S'">fiber_manual_record</mat-icon>
+                          <mat-icon style="color: #ed412c" *ngIf="supplier.active == 'N'">fiber_manual_record</mat-icon>
+                      </td>
+                  </ng-container>
+
+                  <!-- OPTIONS -->
+                  <ng-container matColumnDef="options">
+                      <th mat-header-cell *matHeaderCellDef> </th>
+                      <td mat-cell *matCellDef="let supplier">
+                          <button mat-icon-button [matMenuTriggerFor]="menu">
+                              <mat-icon>more_vert</mat-icon>
+                          </button>
+                          <mat-menu #menu="matMenu">
+                              <button mat-menu-item (click)="edit(supplier)">
+                                  <mat-icon>edit</mat-icon>
+                                  <span>Alterar</span>
+                              </button>
+                              <button mat-menu-item (click)="remove(supplier)">
+                                  <mat-icon>delete</mat-icon>
+                                  <span>Excluir</span>
+                              </button>
+                          </mat-menu>
+                      </td>
+                  </ng-container>
+
+                  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                  <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+              </table>
+
+              <div class="panel-error" *ngIf="errorMessage">
+                  <img src="assets/oops.png">
+                  <h1 headline>Ocorreu um erro!</h1>
+                  <p caption>{{errorMessage}}</p>
+                  <button mat-button color="warn" (click)="ngOnInit()">Tentar Novamente</button>
+              </div>
+
+
+          </mat-card-content>
+      </mat-card>
+  </mat-sidenav-content>
+
+</mat-sidenav-container>''

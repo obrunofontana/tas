@@ -3,34 +3,29 @@ import { MatDialog } from '@angular/material/dialog';
 import { MatSidenav } from '@angular/material/sidenav';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { ConfirmDialogComponent } from '../../components/confirm-dialog/confirm-dialog.component';
-import { ItemComponent } from './item/item.component';
 import {
-  CustomerEntity,
-  CustomerService,
-} from '../../services/customer.service';
-import {
-  SaleOrderEntity,
-  SaleOrderService,
-} from '../../services/sale-order.service';
+  SupplierEntity,
+  SupplierService,
+} from '../../services/supplier.service';
 
 @Component({
-  selector: 'app-sales',
-  templateUrl: './sales.component.html',
-  styleUrls: ['./sales.component.scss'],
+  selector: 'app-suppliers',
+  templateUrl: './suppliers.component.html',
+  styleUrls: ['./suppliers.component.scss'],
 })
-export class SalesComponent implements OnInit {
+export class SuppliersComponent implements OnInit {
   public displayedColumns: string[] = [
     'code',
-    'customer',
-    'billingDate',
+    'name',
+    'cnpj',
+    'address',
+    'email',
+    'contact',
+    'active',
     'options',
-    'saleDate',
-    'total',
   ];
-
-  public customers: CustomerEntity[] = [];
-  public sales: SaleOrderEntity[] = [];
-  public sale: SaleOrderEntity = new SaleOrderEntity();
+  public suppliers: SupplierEntity[] = [];
+  public supplier: SupplierEntity = new SupplierEntity();
 
   public loading: boolean;
   public errorMessage: string;
@@ -38,41 +33,31 @@ export class SalesComponent implements OnInit {
   @ViewChild(MatSidenav, { static: true }) sidenav: MatSidenav;
 
   constructor(
-    private service: SaleOrderService,
-    private customerService: CustomerService,
+    private service: SupplierService,
     private snackBar: MatSnackBar,
     private dialog: MatDialog
   ) {}
 
   ngOnInit(): void {
-    //Inicia as variáveis
     this.errorMessage = '';
     this.loading = true;
-
-    //Carrega todos os registros
     this.service
       .findAll()
       .subscribe(
         (result) => {
-          this.customerService.findAll().subscribe((result) => {
-            this.customers = result as [];
-          });
-
-          this.sales = result as [];
+          this.suppliers = result as [];
         },
         (error) => {
-          //Se ocorreu algum erro neste processo, mostra mensagem para usuário
           this.showError('Ops! Alconteceu algo...', error);
         }
       )
       .add(() => {
-        //Após a execução do subscribe, dando erro ou não, oculta a barra de progresso
         this.loading = false;
       });
   }
 
-  private openSidenav(sale: SaleOrderEntity): void {
-    this.sale = sale;
+  private openSidenav(supplier: SupplierEntity): void {
+    this.supplier = supplier;
     this.sidenav.open();
   }
 
@@ -82,21 +67,18 @@ export class SalesComponent implements OnInit {
       panelClass: 'snackWarn',
     });
 
-    this.errorMessage =
-      error.status == 0
-        ? 'Não foi possível conectar ao servidor'
-        : error.message;
+    this.errorMessage = error.status == 0 ? 'Não foi possível conectar ao servidor' : error.message;
   }
 
   public add(): void {
-    this.openSidenav(new SaleOrderEntity());
+    this.openSidenav(new SupplierEntity());
   }
 
-  public preview(sale: SaleOrderEntity): void {
-    this.openSidenav(sale);
+  public edit(supplier: SupplierEntity): void {
+    this.openSidenav(Object.assign({}, supplier));
   }
 
-  public remove(sale: SaleOrderEntity): void {
+  public remove(supplier: SupplierEntity): void {
     const dialogRef = this.dialog.open(ConfirmDialogComponent, {
       width: '400px',
     });
@@ -106,14 +88,13 @@ export class SalesComponent implements OnInit {
         this.loading = true;
 
         this.service
-          .remove(sale.id)
+          .remove(supplier.id)
           .subscribe(
             (result) => {
               this.snackBar.open('Registro excluído com sucesso!', '', {
                 duration: 3500,
               });
 
-              // Workaround reload
               this.ngOnInit();
             },
             (error) => {
@@ -129,11 +110,10 @@ export class SalesComponent implements OnInit {
 
   public confirm(): void {
     this.loading = true;
-
     this.service
-      .save(this.sale)
+      .save(this.supplier)
       .subscribe(
-        () => {
+        (result) => {
           this.snackBar.open('Registro salvo com sucesso!', '', {
             duration: 3500,
           });
@@ -149,21 +129,5 @@ export class SalesComponent implements OnInit {
         this.loading = false;
         this.sidenav.close();
       });
-  }
-
-  public compareOptions(item1, item2) {
-    return item1 && item2 && item1.id === item2.id;
-  }
-
-  public addItem(): void {
-    let dialogRef = this.dialog.open(ItemComponent, {
-      width: '500px',
-    });
-
-    dialogRef.afterClosed().subscribe((result) => {
-      if (result) {
-        this.sale.items.push(result);
-      }
-    });
   }
 }

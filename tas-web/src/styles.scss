@@ -6,7 +6,9 @@ body {
   margin: 0;
   font-family: Roboto, "Helvetica Neue", sans-serif;
 }
-
+.main-content{
+  height: 100%;
+}
 .spacer {
   flex: 1 1 auto;
 }
@@ -41,8 +43,6 @@ body {
 
   mat-sidenav-content {
     mat-card {
-      margin: 50px;
-
       table {
         width: 100%;
 
