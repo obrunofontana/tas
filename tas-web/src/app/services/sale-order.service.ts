@@ -1,7 +1,6 @@
 import { environment } from './../../environments/environment';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { GroupEntity } from './group.service';
 import { ProductEntity } from './product.service';
 import { CustomerEntity } from './customer.service';
 

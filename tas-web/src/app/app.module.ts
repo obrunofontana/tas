@@ -39,6 +39,7 @@ import { ItemComponent } from './pages/sales/item/item.component';
 import { TotalSalePipe } from './pipes/total-sale.pipe';
 import { MenuComponent } from './components/menu/menu.component';
 import { SuppliersComponent } from './pages/suppliers/suppliers.component';
+import { PurchasesComponent } from './pages/purchases/purchases.component';
 
 @NgModule({
   declarations: [
@@ -52,6 +53,7 @@ import { SuppliersComponent } from './pages/suppliers/suppliers.component';
     TotalSalePipe,
     MenuComponent,
     SuppliersComponent,
+    PurchasesComponent,
   ],
   imports: [
     BrowserModule,
