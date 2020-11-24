@@ -2,8 +2,8 @@
 
   <mat-sidenav #sidenav position="end" disableClose="true">
       <mat-toolbar>
-          <h2 *ngIf="!supplier.id">Adicionar Cliente</h2>
-          <h2 *ngIf="supplier.id">Alterar Cliente</h2>
+          <h2 *ngIf="!supplier.id">Adicionar Fornecedor</h2>
+          <h2 *ngIf="supplier.id">Alterar Fornecedor</h2>
           <span class="spacer"></span>
           <button mat-icon-button (click)="sidenav.close()">
               <mat-icon>close</mat-icon>
