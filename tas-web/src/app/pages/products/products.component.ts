@@ -97,7 +97,7 @@ export class ProductsComponent implements OnInit {
         this.service
           .remove(product.id)
           .subscribe(
-            (result) => {
+            () => {
               this.snackBar.open('Registro excluído com sucesso!', '', {
                 duration: 3500,
               });
@@ -122,7 +122,7 @@ export class ProductsComponent implements OnInit {
     this.service
       .save(this.product)
       .subscribe(
-        (result) => {
+        () => {
           this.snackBar.open('Registro salvo com sucesso!', '', {
             duration: 3500,
           });

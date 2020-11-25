@@ -41,7 +41,6 @@ export class CustomersComponent implements OnInit {
     this.errorMessage = '';
     this.loading = true;
 
-    //Carrega todos os registros
     this.service
       .findAll()
       .subscribe(
@@ -64,17 +63,12 @@ export class CustomersComponent implements OnInit {
   }
 
   private showError(text: string, error: any): void {
-    //Mostra a snackbar com fundo customizado (vermelho)
     this.snackBar.open(text, '', {
       duration: 5000,
       panelClass: 'snackWarn',
     });
 
-    //Adiciona a mensagem de erro no painel de erro
-    this.errorMessage =
-      error.status == 0
-        ? 'Não foi possível conectar ao servidor'
-        : error.message;
+    this.errorMessage = error.status == 0 ? 'Não foi possível conectar ao servidor' : error.message;
   }
 
   public add(): void {
@@ -90,7 +84,6 @@ export class CustomersComponent implements OnInit {
       width: '400px',
     });
 
-    //Depois de fechado (clicado em cancelar ou confirmar)...
     dialogRef.afterClosed().subscribe((result) => {
       if (result) {
         this.loading = true;
@@ -98,7 +91,7 @@ export class CustomersComponent implements OnInit {
         this.service
           .remove(customer.id)
           .subscribe(
-            (result) => {
+            () => {
               this.snackBar.open('Registro excluído com sucesso!', '', {
                 duration: 3500,
               });
@@ -117,14 +110,11 @@ export class CustomersComponent implements OnInit {
   }
 
   public confirm(): void {
-    //Mostra a barra de progresso
     this.loading = true;
-
-    //Chama o método salvar (incluir ou alterar) da service
     this.service
       .save(this.customer)
       .subscribe(
-        (result) => {
+        () => {
           this.snackBar.open('Registro salvo com sucesso!', '', {
             duration: 3500,
           });

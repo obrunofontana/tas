@@ -90,7 +90,7 @@ export class SuppliersComponent implements OnInit {
         this.service
           .remove(supplier.id)
           .subscribe(
-            (result) => {
+            () => {
               this.snackBar.open('Registro excluído com sucesso!', '', {
                 duration: 3500,
               });
@@ -113,7 +113,7 @@ export class SuppliersComponent implements OnInit {
     this.service
       .save(this.supplier)
       .subscribe(
-        (result) => {
+        () => {
           this.snackBar.open('Registro salvo com sucesso!', '', {
             duration: 3500,
           });

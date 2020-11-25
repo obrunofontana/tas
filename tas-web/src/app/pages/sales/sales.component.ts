@@ -78,10 +78,7 @@ export class SalesComponent implements OnInit {
       panelClass: 'snackWarn',
     });
 
-    this.errorMessage =
-      error.status == 0
-        ? 'Não foi possível conectar ao servidor'
-        : error.message;
+    this.errorMessage = error.status == 0 ? 'Não foi possível conectar ao servidor' : error.message;
   }
 
   public add(): void {
@@ -104,7 +101,7 @@ export class SalesComponent implements OnInit {
         this.service
           .remove(sale.id)
           .subscribe(
-            (result) => {
+            () => {
               this.snackBar.open('Registro excluído com sucesso!', '', {
                 duration: 3500,
               });
