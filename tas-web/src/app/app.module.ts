@@ -41,6 +41,9 @@ import { MenuComponent } from './components/menu/menu.component';
 import { SuppliersComponent } from './pages/suppliers/suppliers.component';
 import { PurchasesComponent } from './pages/purchases/purchases.component';
 import { ItemPurchaseComponent } from './pages/purchases/item-purchase/item-purchase.component';
+import { CompositionComponent } from './pages/composition/composition.component';
+import { CompositionItemComponent } from './pages/composition/composition-item/composition-item.component';
+import { IndexComponent } from './pages/index/index.component';
 
 @NgModule({
   declarations: [
@@ -57,6 +60,9 @@ import { ItemPurchaseComponent } from './pages/purchases/item-purchase/item-purc
     PurchasesComponent,
     ItemPurchaseComponent,
     ItemSaleComponent,
+    CompositionComponent,
+    CompositionItemComponent,
+    IndexComponent,
   ],
   imports: [
     BrowserModule,

@@ -37,7 +37,7 @@
                   <mat-toolbar *ngIf="!sale.id">
                       <span class="spacer"></span>
                       <button mat-button (click)="sidenav.close()">CANCELAR</button>
-                      <button mat-raised-button color="primary" (click)="confirm()" [disabled]="sale.items.length == 0">Confirmar</button>
+                      <button mat-raised-button color="warn" (click)="confirm()" [disabled]="sale.items.length == 0">Confirmar</button>
                   </mat-toolbar>
               </mat-tab>
               <mat-tab label="Itens">
@@ -83,7 +83,7 @@
 
       <mat-card>
           <mat-card-title>
-              <mat-toolbar color="primary">
+              <mat-toolbar color="warn">
                   <h3>Cadastro de Pedido de Venda</h3>
 
                   <span class="spacer"></span>
