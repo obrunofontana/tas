@@ -28,10 +28,10 @@ import org.springframework.web.bind.annotation.RequestBody;
 @RestController
 public class FinishedProductController {
     
-     @Autowired
+    @Autowired
     private FinishedProductService service;
 
-    @GetMapping("finishProducts")
+    @GetMapping("finishedProducts")
     public ResponseEntity<List<FinishedProductEntity>> findAll() {
         try {
             List<FinishedProductEntity> finishProducts = service.findAll();
@@ -42,7 +42,7 @@ public class FinishedProductController {
         }
     }
 
-    @PostMapping("finishProducts")
+    @PostMapping("finishedProducts")
     public ResponseEntity create(@RequestBody FinishedProductEntity finishedProduct) {
         try {
             this.service.save(finishedProduct);
@@ -53,7 +53,7 @@ public class FinishedProductController {
         }
     }
 
-    @GetMapping("finishProducts/{id}")
+    @GetMapping("finishedProducts/{id}")
     public ResponseEntity findByID(@PathVariable("id") Integer id) {
         try {
             FinishedProductEntity finishedProduct = this.service.findById(id);
@@ -66,7 +66,7 @@ public class FinishedProductController {
         }
     }
 
-    @PutMapping("finishProducts/{id}")
+    @PutMapping("finishedProducts/{id}")
     public ResponseEntity update(@PathVariable("id") Integer id, @RequestBody FinishedProductEntity finishedProduct) {
         try {
             FinishedProductEntity found = this.service.findById(id);
@@ -83,7 +83,7 @@ public class FinishedProductController {
         }
     }
 
-    @DeleteMapping("finishProducts/{id}")
+    @DeleteMapping("finishedProducts/{id}")
     public ResponseEntity delete(@PathVariable("id") Integer id) {
         try {
             FinishedProductEntity found = this.service.findById(id);

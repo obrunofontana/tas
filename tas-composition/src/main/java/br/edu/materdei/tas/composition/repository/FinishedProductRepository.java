@@ -9,4 +9,6 @@ import org.springframework.stereotype.Repository;
  * @author brunofontana
  */
 @Repository
-public interface FinishedProductRepository extends JpaRepository<FinishedProductEntity, Integer> {}
+public interface FinishedProductRepository extends JpaRepository<FinishedProductEntity, Integer> {
+    
+}

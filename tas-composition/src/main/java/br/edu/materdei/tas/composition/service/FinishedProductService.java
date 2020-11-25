@@ -4,6 +4,7 @@ import br.edu.materdei.tas.core.exception.ResourceNotFoundException;
 import br.edu.materdei.tas.core.service.IBaseService;
 import br.edu.materdei.tas.composition.entity.FinishedProductEntity;
 import br.edu.materdei.tas.composition.repository.FinishedProductRepository;
+
 import java.util.List;
 import javax.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,7 +14,7 @@ import org.springframework.stereotype.Service;
  *
  * @author brunofontana
  */
- @Service
+@Service
 public class FinishedProductService implements IBaseService<FinishedProductEntity> {
 
     @Autowired
