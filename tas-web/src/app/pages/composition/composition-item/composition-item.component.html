@@ -1,1 +1,25 @@
-<p>composition-item works!</p>
+<h1 mat-dialog-title>Adicionar Item</h1>
+
+<div mat-dialog-content>
+    <mat-form-field class="full-width">
+        <mat-select placeholder="Produto" [(ngModel)]="rawMaterial.product" (ngModelChange)="changeItem()">
+            <mat-option *ngFor="let product of products" [value]="product">
+                {{product.name}}
+            </mat-option>
+        </mat-select>
+    </mat-form-field>
+
+    <div class="flex-container">
+        <mat-form-field class="input-number">
+            <input matInput type="number" placeholder="Qtdade" [(ngModel)]="rawMaterial.quantity">
+        </mat-form-field>
+
+        <span class="spacer"></span>
+        <span class="spacer"></span>
+    </div>
+</div>
+
+<div mat-dialog-actions align="end">
+    <button mat-button (click)="onDismiss()">Cancelar</button>
+    <button mat-raised-button (click)="onConfirm()">Confirmar</button>
+</div>
