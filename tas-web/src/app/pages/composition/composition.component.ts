@@ -152,7 +152,7 @@ export class CompositionComponent implements OnInit {
 
     dialogRef.afterClosed().subscribe((result) => {
       if (result) {
-        this.finishedProduct.items.push(result);
+        this.finishedProduct.ingredients.push(result);
       }
     });
   }

@@ -20,11 +20,22 @@
                               <mat-option *ngFor="let product of products" [value]="product">{{ product.name }}</mat-option>
                           </mat-select>
                       </mat-form-field>
+
+                      <div class="inputStock">
+                        <mat-form-field class="input-number">
+                            <input matInput type="number" placeholder="Estoque Máx." [(ngModel)]="finishedProduct.stockMax">
+                        </mat-form-field>
+
+                        <mat-form-field class="input-number est_min">
+                            <input matInput type="number" placeholder="Estoque Min." [(ngModel)]="finishedProduct.stockMin">
+                        </mat-form-field>
+                      </div>
+
                   </div>
                   <mat-toolbar *ngIf="!finishedProduct.id">
                       <span class="spacer"></span>
                       <button mat-button (click)="sidenav.close()">Cancelar</button>
-                      <button mat-raised-button color="warn" (click)="confirm()" [disabled]="finishedProduct.items.length == 0">Confirmar</button>
+                      <button mat-raised-button color="warn" (click)="confirm()" [disabled]="finishedProduct.ingredients.length == 0">Confirmar</button>
                   </mat-toolbar>
               </mat-tab>
               <mat-tab label="Itens">
@@ -37,7 +48,7 @@
                               </tr>
                           </thead>
                           <tbody>
-                              <tr *ngFor="let item of finishedProduct.items">
+                              <tr *ngFor="let item of finishedProduct.ingredients">
                                   <td>{{item.product.name}}</td>
                                   <td class="cell-right">{{item.quantity}}</td>
                               </tr>

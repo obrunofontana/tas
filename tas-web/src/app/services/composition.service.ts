@@ -45,10 +45,10 @@ export class FinishedProductEntity {
   product: ProductEntity;
   stockMin: number;
   stockMax: number;
-  items: RawMaterialEntity[];
+  ingredients: RawMaterialEntity[];
 
   constructor() {
-    this.items = [];
+    this.ingredients = [];
   }
 }
 1;
