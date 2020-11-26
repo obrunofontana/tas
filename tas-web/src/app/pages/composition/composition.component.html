@@ -23,11 +23,11 @@
 
                       <div class="inputStock">
                         <mat-form-field class="input-number">
-                            <input matInput type="number" placeholder="Estoque Máx." [(ngModel)]="finishedProduct.stockMax">
+                            <input matInput type="number" placeholder="Estoque Máx." [(ngModel)]="finishedProduct.stockMax" [disabled]="finishedProduct.id">
                         </mat-form-field>
 
                         <mat-form-field class="input-number est_min">
-                            <input matInput type="number" placeholder="Estoque Min." [(ngModel)]="finishedProduct.stockMin">
+                            <input matInput type="number" placeholder="Estoque Min." [(ngModel)]="finishedProduct.stockMin" [disabled]="finishedProduct.id">
                         </mat-form-field>
                       </div>
 
