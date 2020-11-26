@@ -16,7 +16,7 @@ import javax.persistence.Table;
  * @author brunofontana
  */
 @Entity
-@Table(name = "itemsalesorder")
+@Table(name = "itemssalesorder")
 public class ItemSalesOrderEntity {
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
