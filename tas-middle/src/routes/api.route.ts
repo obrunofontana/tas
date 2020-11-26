@@ -58,7 +58,6 @@ class APIRoute {
           
           return res.status(status).json(data)
         } catch (e) {
-          console.log('ehhh karalho ', e);
           return res.status(500).json({ error: e });
         }
       });

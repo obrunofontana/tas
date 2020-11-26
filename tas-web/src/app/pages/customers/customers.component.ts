@@ -45,7 +45,6 @@ export class CustomersComponent implements OnInit {
       .findAll()
       .subscribe(
         (result) => {
-          console.log('resultado ', result);
           this.customers = result as [];
         },
         (error) => {
