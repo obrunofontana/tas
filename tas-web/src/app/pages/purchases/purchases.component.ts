@@ -77,7 +77,7 @@ export class PurchasesComponent implements OnInit {
   private showError(text: string, error: any): void {
     this.snackBar.open(text, '', {
       duration: 5000,
-      panelClass: 'snackWarn',
+      panelClass: 'snackError',
     });
 
     this.errorMessage =

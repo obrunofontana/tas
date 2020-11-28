@@ -81,7 +81,7 @@ export class SalesComponent implements OnInit {
   private showError(text: string, error: any): void {
     this.snackBar.open(text, '', {
       duration: 5000,
-      panelClass: 'snackWarn',
+      panelClass: 'snackError',
     });
 
     this.errorMessage =
@@ -111,6 +111,7 @@ export class SalesComponent implements OnInit {
           this.loading = false;
           return this.snackBar.open('Não é possivel remover um pedido faturado, estorne o faturamento e tente novamente!', '', {
             duration: 3500,
+            panelClass: 'snackWarn',
           });
         }
 
