@@ -49,6 +49,7 @@ import { CompositionComponent } from './pages/composition/composition.component'
 import { CompositionItemComponent } from './pages/composition/composition-item/composition-item.component';
 import { IndexComponent } from './pages/index/index.component';
 import { MaskPipe } from './pipes/mask.pipe';
+import { BilledOrdersComponent } from './pages/billed-orders/billed-orders.component';
 
 registerLocaleData(localePt, 'pt');
 
@@ -71,6 +72,7 @@ registerLocaleData(localePt, 'pt');
     CompositionItemComponent,
     IndexComponent,
     MaskPipe,
+    BilledOrdersComponent,
   ],
   imports: [
     BrowserModule,

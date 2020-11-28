@@ -8,6 +8,7 @@ import { SuppliersComponent } from './pages/suppliers/suppliers.component';
 import { PurchasesComponent } from './pages/purchases/purchases.component';
 import { CompositionComponent } from './pages/composition/composition.component';
 import { IndexComponent } from './pages/index/index.component';
+import { BilledOrdersComponent } from './pages/billed-orders/billed-orders.component';
 
 const routes: Routes = [
   { path: 'index', component: IndexComponent },
@@ -18,6 +19,7 @@ const routes: Routes = [
   { path: 'suppliers', component: SuppliersComponent },
   { path: 'purchases', component: PurchasesComponent },
   { path: 'compositions', component: CompositionComponent },
+  { path: 'billed/orders', component: BilledOrdersComponent },
 ];
 
 @NgModule({

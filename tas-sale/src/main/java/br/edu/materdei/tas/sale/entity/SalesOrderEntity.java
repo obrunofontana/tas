@@ -36,8 +36,8 @@ public class SalesOrderEntity {
     
     @Temporal(TemporalType.DATE)
     private Date billingDate;
-    
-    @ManyToOne
+
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(nullable = false)
     private CustomerEntity customer;
     

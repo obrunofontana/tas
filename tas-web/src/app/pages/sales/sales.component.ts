@@ -13,6 +13,7 @@ import {
   SaleOrderEntity,
   SaleOrderService,
 } from '../../services/sale-order.service';
+import { InvoiceEntity, InvoiceService } from '../../services/invoice.service';
 
 @Component({
   selector: 'app-sales',
@@ -41,6 +42,7 @@ export class SalesComponent implements OnInit {
   constructor(
     private service: SaleOrderService,
     private customerService: CustomerService,
+    private invoiceService: InvoiceService,
     private snackBar: MatSnackBar,
     private dialog: MatDialog
   ) {}
@@ -82,7 +84,10 @@ export class SalesComponent implements OnInit {
       panelClass: 'snackWarn',
     });
 
-    this.errorMessage = error.status == 0 ? 'Não foi possível conectar ao servidor' : error.message;
+    this.errorMessage =
+      error.status == 0
+        ? 'Não foi possível conectar ao servidor'
+        : error.message;
   }
 
   public add(): void {
@@ -102,6 +107,13 @@ export class SalesComponent implements OnInit {
       if (result) {
         this.loading = true;
 
+        if (sale.billingDate) {
+          this.loading = false;
+          return this.snackBar.open('Não é possivel remover um pedido faturado, estorne o faturamento e tente novamente!', '', {
+            duration: 3500,
+          });
+        }
+
         this.service
           .remove(sale.id)
           .subscribe(
@@ -115,6 +127,40 @@ export class SalesComponent implements OnInit {
             },
             (error) => {
               this.showError('Não foi possível exluir o registro', error);
+            }
+          )
+          .add(() => {
+            this.loading = false;
+          });
+      }
+    });
+  }
+
+  public billing(sale: SaleOrderEntity): void {
+    const dialogRef = this.dialog.open(ConfirmDialogComponent, {
+      width: '400px',
+    });
+
+    dialogRef.afterClosed().subscribe((result) => {
+      if (result) {
+        this.loading = true;
+
+        let invoice = new InvoiceEntity();
+        invoice.salesOrder = sale;
+
+        this.invoiceService
+          .save(invoice)
+          .subscribe(
+            () => {
+              this.snackBar.open('Pedido faturado com sucesso!', '', {
+                duration: 3500,
+              });
+
+              // Workaround reload
+              this.ngOnInit();
+            },
+            (error) => {
+              this.showError('Não foi possível faturar o pedido!', error);
             }
           )
           .add(() => {

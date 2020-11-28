@@ -56,5 +56,4 @@ export class SaleOrderEntity {
   constructor() {
     this.items = [];
   }
-}
-1;
+};

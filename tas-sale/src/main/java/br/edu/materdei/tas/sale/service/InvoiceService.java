@@ -68,10 +68,11 @@ public class InvoiceService implements IBaseService<InvoiceEntity> {
     @Transactional
     public void delete(Integer id) throws ResourceNotFoundException {
          // Pego a venda pelo ID
-        InvoiceEntity invoice = this.repository.getOne(id);
+        InvoiceEntity invoice = repository.getOne(id);
+//        InvoiceEntity invoice = this.repository.getOne(id);
         
         // Excluo a venda
-        this.repository.deleteById(invoice.getId());
+        repository.deleteById(invoice.getId());
         
         // Pego o pedido da venda para remover a data de faturado
         SalesOrderEntity salesOrder = invoice.getSalesOrder();
@@ -79,7 +80,5 @@ public class InvoiceService implements IBaseService<InvoiceEntity> {
         
         // Salvo a alteração feita no pedido
         this.salesOrderRepository.save(salesOrder);
-        
-        repository.deleteById(id);
     }
 }

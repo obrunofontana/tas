@@ -3,6 +3,7 @@ package br.edu.materdei.tas.sale.entity;
 import java.util.Date;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -30,7 +31,7 @@ public class InvoiceEntity {
     @Column(nullable = false)
     private Date invoiceDate;
     
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(nullable = false)
     private SalesOrderEntity salesOrder;
 
