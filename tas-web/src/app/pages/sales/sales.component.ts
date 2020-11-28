@@ -2,6 +2,7 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { MatSidenav } from '@angular/material/sidenav';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import * as uuid from 'uuid';
 import { ConfirmDialogComponent } from '../../components/confirm-dialog/confirm-dialog.component';
 import { ItemSaleComponent } from './item-sale/item-sale.component';
 import {
@@ -22,8 +23,8 @@ export class SalesComponent implements OnInit {
   public displayedColumns: string[] = [
     'code',
     'customer',
-    'billingDate',
     'salesDate',
+    'billingDate',
     'total',
     'options',
   ];
@@ -69,6 +70,9 @@ export class SalesComponent implements OnInit {
 
   private openSidenav(sale: SaleOrderEntity): void {
     this.sale = sale;
+    // Default values
+    this.sale.code = uuid.v4().slice(0, 6).toUpperCase();
+    this.sale.salesDate = new Date();
     this.sidenav.open();
   }
 

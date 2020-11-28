@@ -2,6 +2,7 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { MatSidenav } from '@angular/material/sidenav';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import * as uuid from 'uuid';
 import { ConfirmDialogComponent } from '../../components/confirm-dialog/confirm-dialog.component';
 import { ItemPurchaseComponent } from './item-purchase/item-purchase.component';
 import {
@@ -67,6 +68,9 @@ export class PurchasesComponent implements OnInit {
 
   private openSidenav(purchase: PurchaseEntity): void {
     this.purchase = purchase;
+    // Default values
+    this.purchase.code = uuid.v4().slice(0, 6).toUpperCase();
+    this.purchase.datePurchased = new Date();
     this.sidenav.open();
   }
 

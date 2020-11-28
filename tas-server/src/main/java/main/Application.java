@@ -26,7 +26,7 @@ import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
     "br.edu.materdei.tas.composition.repository"   
     
 })
-@ComponentScan("br.edu.materdei.tas")
+@ComponentScan("br.edu.materdei.tas.*")
 public class Application {
     public static void main(String[] args) {
         SpringApplication.run(Application.class, args);        

@@ -1,5 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import { NgModule, LOCALE_ID } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -30,6 +30,10 @@ import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatBadgeModule } from '@angular/material/badge';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 
+// Default locale BR
+import localePt from '@angular/common/locales/pt';
+import { registerLocaleData } from '@angular/common';
+
 import { ConfirmDialogComponent } from './components/confirm-dialog/confirm-dialog.component';
 import { GroupsComponent } from './pages/groups/groups.component';
 import { SalesComponent } from './pages/sales/sales.component';
@@ -44,6 +48,9 @@ import { ItemPurchaseComponent } from './pages/purchases/item-purchase/item-purc
 import { CompositionComponent } from './pages/composition/composition.component';
 import { CompositionItemComponent } from './pages/composition/composition-item/composition-item.component';
 import { IndexComponent } from './pages/index/index.component';
+import { MaskPipe } from './pipes/mask.pipe';
+
+registerLocaleData(localePt, 'pt');
 
 @NgModule({
   declarations: [
@@ -63,6 +70,7 @@ import { IndexComponent } from './pages/index/index.component';
     CompositionComponent,
     CompositionItemComponent,
     IndexComponent,
+    MaskPipe,
   ],
   imports: [
     BrowserModule,
@@ -96,6 +104,10 @@ import { IndexComponent } from './pages/index/index.component';
       provide: HTTP_INTERCEPTORS,
       useClass: CustomHttpInterceptor,
       multi: true,
+    },
+    {
+      provide: LOCALE_ID,
+      useValue: 'pt',
     },
   ],
   bootstrap: [AppComponent],
